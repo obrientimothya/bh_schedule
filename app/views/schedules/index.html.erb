@@ -18,7 +18,12 @@
   <tbody>
     <% @schedules.each do |schedule| %>
       <tr>
-        <td><%= schedule.day %></td>
+        <td>
+          <% date = Time.zone.parse(schedule.day) %>
+          <span style="<%= (date.saturday? || date.sunday?) ? 'font-weight: bold; color: teal;' : '' %>">
+            <%= date.strftime("%a %d %b") %>
+          </span>
+        </td>
         <td><%= schedule.allocation %></td>
       </tr>
     <% end %>
