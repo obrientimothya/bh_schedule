@@ -1,0 +1,27 @@
+<div class="well">
+  <%= form_tag import_schedules_path, class: 'form-inline', multipart: true do %>
+    <div class="form-group">
+      <%= file_field_tag :file %>
+    </div>
+    <%= submit_tag "Import", class: 'btn btn-primary' %>
+  <% end %>
+</div>
+
+<%- model_class = Schedule -%>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:date) %></th>
+      <th><%= model_class.human_attribute_name(:allocation) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @schedules.each do |schedule| %>
+      <tr>
+        <td><%= schedule.day %></td>
+        <td><%= schedule.allocation %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
